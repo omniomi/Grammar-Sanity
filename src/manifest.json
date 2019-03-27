@@ -1,0 +1,31 @@
+{
+  "name": "Grammar Sanity",
+  "version": "1.0",
+  "description": "I don't like change... Not all language evolution is eqaul.",
+  "manifest_version": 2,
+  "permissions": [
+    "storage"
+  ],
+  "options_ui": {
+    "page": "options/configuration.html",
+    "open_in_tab": false
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*/*",
+        "file:///*/*"
+      ],
+      "js": [
+        "js/content_script.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "icons": {
+    "16": "img/accident_16.png",
+    "32": "img/accident_32.png",
+    "48": "img/accident_48.png",
+    "128": "img/accident_128.png"
+  }
+}
