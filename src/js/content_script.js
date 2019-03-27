@@ -53,6 +53,11 @@ function handleText(textNode) {
 		markChanged:     true
 	}, function (items) {
 		var s = textNode.parentElement.innerHTML;
+
+		var accidentRegEx = new RegExp('\\b' + 'on accident' + '\\b', 'gi');
+		var suddenRegEx = new RegExp('\\b' + 'all of the sudden' + '\\b', 'gi');
+		var legoRegEx = new RegExp('\\b' + 'legos' + '\\b', 'gi');
+
 		var pre, post;
 
 		if (items.markChanged) {
@@ -63,27 +68,21 @@ function handleText(textNode) {
 			post = '</span>';
 		}
 
-		if (items.replaceAccident) {
-			var accidentRegEx = new RegExp('\\b' + 'on accident' + '\\b', 'gi');
-
-			s = s.replace(accidentRegEx, function(match) {
+		if (items.replaceAccident && s.match(accidentRegEx)) {
+			textNode.parentElement.innerHTML = s.replace(accidentRegEx, function(match) {
 				return pre + matchCase("by accident", match) + post;
 			});
 		}
 
-		if (items.replaceSudden) {
-			var suddenRegEx = new RegExp('\\b' + 'all of the sudden' + '\\b', 'gi');
-
-			s = s.replace(suddenRegEx, function(match) {
+		if (items.replaceSudden && s.match(suddenRegEx)) {
+			textNode.parentElement.innerHTML =  s.replace(suddenRegEx, function(match) {
 				return pre + matchCase("all of a sudden", match) + post;
 			});
 		}
 
-		if (items.replaceLego) {
-			var legoRegEx = new RegExp('\\b' + 'legos' + '\\b', 'gi');
+		if (items.replaceLego && s.match(legoRegEx)) {
 			var replacementString = pre + 'LEGO' + post;
-			s = s.replace(legoRegEx, replacementString);
+			textNode.parentElement.innerHTML = s.replace(legoRegEx, replacementString);
 		}
-		textNode.parentElement.innerHTML = s;
 	});
 }
