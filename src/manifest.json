@@ -1,7 +1,7 @@
 {
   "name": "Grammar Sanity",
   "version": "1.0",
-  "description": "I don't like change... Not all language evolution is eqaul.",
+  "description": "I don't like change... Not all language evolution is equal.",
   "manifest_version": 2,
   "permissions": [
     "storage"
